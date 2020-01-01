@@ -1,0 +1,60 @@
+﻿<Page x:Class="mobileAir.pages.YearlyReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:mobileAir.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="YearlyReport">
+
+    <Page.Resources>
+        <Style x:Key="Body_Content_DataGrid_Centering" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" Margin="2,5,2,5"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <GroupBox Header="Yealy Report" Margin="10" FontSize="14" FontFamily="Arial">
+        <Border BorderThickness="0.5" BorderBrush="Gray" Height="550" Width="1200" Background="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="#cccccc" Opacity="100" ShadowDepth="0" Direction="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <DatePicker Name="txtsdate" Grid.Row="0" Grid.Column="0" Height="30" Width="245" Margin="10,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" SelectedDateChanged="Txtsdate_SelectedDateChanged"/>
+                <DatePicker Name="txtedate" Grid.Row="0" Grid.Column="1" Height="30" Width="245" VerticalContentAlignment="Center" HorizontalAlignment="Left" SelectedDateChanged="Txtedate_SelectedDateChanged"/>
+                <Button Grid.Row="0" Grid.ColumnSpan="5" Content="View" Name="btnview" Padding="0,3,0,3" Margin="0,0,10,0" Height="30" Width="50" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Btnview_Click" Cursor="Hand"/>
+                
+                <DataGrid CellStyle="{StaticResource Body_Content_DataGrid_Centering}" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" Name="dgyearly" IsReadOnly="True" VerticalScrollBarVisibility="Visible">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="Serv_id" Binding="{Binding serv_id}" Visibility="Hidden"/>
+                        <DataGridTextColumn Header="Customer Name" Width="*" Binding="{Binding customer}" />
+                        <DataGridTextColumn Header="Bill No" Width="*" Binding="{Binding billno}" />
+                        <DataGridTextColumn Header="Bill Date" Width="*" Binding="{Binding billdate}"/>
+                        <DataGridTextColumn Header="Model" Width="*" Binding="{Binding model}"/>
+                        <DataGridTextColumn Header="Reg. No" Width="*" Binding="{Binding vehicleno}"/>
+                        <DataGridTextColumn Header="Amount" Width="*" Binding="{Binding amount}"/>
+                        <DataGridTextColumn Header="Outstanding" Width="*" Binding="{Binding outstanding}"/>
+                        <DataGridTextColumn Header="Grandtotal" Width="*" Binding="{Binding grandtotal}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </GroupBox>
+</Page>

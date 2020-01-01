@@ -1,0 +1,81 @@
+﻿<Page x:Class="mobileAir.pages.VehicleReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:mobileAir.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="VehicleReport">
+
+    <Page.Resources>
+        <Style x:Key="Body_Content_DataGrid_Centering" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" Margin="2,5,2,5"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <GroupBox Header="Vehicle Report" Margin="10" FontSize="14" FontFamily="Arial">
+        <Border BorderThickness="0.5" BorderBrush="Gray" Height="550" Width="1200" Background="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="#cccccc" Opacity="100" ShadowDepth="0" Direction="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Row="0" Grid.ColumnSpan="5" Height="30" Width="245" Name="txtvehicle" Margin="10,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" KeyUp="Txtvehicle_KeyUp" CharacterCasing="Upper">
+                    <TextBox.Style>
+                        <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                            <Style.Resources>
+                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <Label Content="Vehicle No" Foreground="Gray" Padding="10"/>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Style.Resources>
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                    <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="{x:Null}">
+                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter Property="Background" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button Grid.Row="0" Grid.ColumnSpan="5" Content="View" Name="btnview" Padding="0,3,0,3" Margin="0,0,10,0" Height="30" Width="50" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Btnview_Click" Cursor="Hand"/>
+                <DataGrid CellStyle="{StaticResource Body_Content_DataGrid_Centering}" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False" Name="dgvehicleno" IsReadOnly="True" VerticalScrollBarVisibility="Visible">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="Serv_id" Binding="{Binding serv_id}" Visibility="Hidden"/>
+                        <DataGridTextColumn Header="Vehicle No" Width="150" Binding="{Binding vehicleno}" />
+                        <DataGridTextColumn Header="Customer Name" Width="*" Binding="{Binding customer}"/>
+                        <DataGridTextColumn Header="Bill No" Width="150" Binding="{Binding billno}"/>
+                        <DataGridTextColumn Header="Bill Date" Width="150" Binding="{Binding billdate}"/>
+                        <DataGridTextColumn Header="Km" Width="150" Binding="{Binding km}"/>
+                        <DataGridTextColumn Header="Grand Total" Width="150" Binding="{Binding grandtotal}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </GroupBox>
+</Page>

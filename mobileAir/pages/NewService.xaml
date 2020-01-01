@@ -1,0 +1,306 @@
+﻿<Page x:Class="mobileAir.pages.NewService"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:mobileAir.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NewService">
+
+    <GroupBox Header="New Service" Margin="10" FontSize="14" FontFamily="Arial">
+        <Border BorderThickness="0.5" BorderBrush="Gray" Height="550" Width="618" Background="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="#cccccc" Opacity="100" ShadowDepth="0" Direction="0" />
+            </Border.Effect>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Grid Width="500">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Name="textservid" Visibility="Hidden"/>
+                    <TextBlock Name="textlaboid" Visibility="Hidden"/>
+                    <TextBlock Name="textlabono" Visibility="Hidden"/>
+
+                    <TextBox Grid.Row="0" Grid.Column="0" Height="35" Background="#E8E8E8" Width="245" Name="txtbillno" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Left" IsReadOnly="True" >
+                    </TextBox>
+                    <ComboBox Grid.Row="0" Grid.Column="1" TabIndex="1" SelectedValuePath="Tag" IsSynchronizedWithCurrentItem="True" Height="35" Width="245" Name="cbbcustomer" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Right" />
+                    
+
+                    <ComboBox Grid.Row="1" Grid.Column="0" TabIndex="2" SelectedValuePath="Tag" IsSynchronizedWithCurrentItem="True" Height="35" Width="200" Name="cbbmodel" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Left" />
+                    <Button Grid.Row="1" Grid.Column="0" Height="35" Width="40" Content=" + " Name="btnaddmodel" Cursor="Hand" Margin="0,0,5,10" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnaddmodel_Click"/>
+
+                    <DatePicker Grid.Row="1" Grid.Column="1" Height="35" Width="245" Name="txtdate" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Right">
+                        <DatePicker.Resources>
+                            <Style TargetType="DatePickerTextBox">
+                                <Setter Property="IsReadOnly" Value="True"/>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
+
+                    <TextBox Grid.Row="2" Grid.Column="0" TabIndex="3" Height="35" Width="245" CharacterCasing="Upper" Name="txtvehicalno" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Left" >
+                        <TextBox.Style>
+                            <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Vehicle No" Foreground="Gray" Padding="10"/>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <ComboBox Grid.Row="2" Grid.Column="1" TabIndex="4" SelectedValuePath="Tag" IsSynchronizedWithCurrentItem="True" Height="35" Width="245" Name="cbbtechnician" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Right" />
+
+                    <TextBox Grid.Row="3" Grid.Column="0" TabIndex="5" Height="35" Width="245" Name="txtkm" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Left" >
+                        <TextBox.Style>
+                            <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Km" Foreground="Gray" Padding="10"/>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <!--<ComboBox Grid.Row="3" Grid.Column="1" Height="35" Width="245" Name="cbbpayment" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Right">
+                        <ComboBox.Items>
+                            <ComboBoxItem Content="CASH" IsSelected="True"/>
+                            <ComboBoxItem Content="CHEQUE" />
+                        </ComboBox.Items>
+                    </ComboBox>-->
+                    <Button Grid.Row="3" Grid.Column="1" Height="35" Width="100" Content=" + Model" Name="btngetmodel" Margin="5,0,0,10" Cursor="Wait" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left"  Click="Btngetmodel_Click"/>
+                    <Button Grid.Row="3" Grid.Column="1" Height="35" Width="100" Content=" + Labour" Name="btngetlabour" Margin="0,0,0,10" Cursor="Wait" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Click="Btngetlabour_Click"/>
+                    
+                    <Rectangle Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Fill="LightGray" Height="1" Margin="0,0,0,10"/>
+
+                    <!--Hidden TextBox-->
+                    <TextBox Grid.Row="0" Grid.Column="0" Height="35" Width="122" HorizontalAlignment="Left" VerticalContentAlignment="Center" Name="txtlabodeteid" Visibility="Hidden" Text="{Binding ElementName=dglabour,Path=SelectedItem.labodete_id, UpdateSourceTrigger=Explicit}">
+                        <TextBox.Style>
+                            <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Labo Details Id" Foreground="Gray" Padding="10"/>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <ComboBox Grid.Row="5" Grid.Column="0" TabIndex="6" SelectedValuePath="Tag" IsSynchronizedWithCurrentItem="True" Height="35" Width="200" Name="cbblabour" Margin="0,0,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Left" SelectedValue="{Binding ElementName=dglabour,Path=SelectedValue.labo_id, UpdateSourceTrigger=Explicit}" />
+                    <Button Grid.Row="5" Grid.Column="0" Height="35" Width="40" Content=" + " Name="btnaddlabour" Cursor="Hand" Margin="0,0,5,10" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Btnaddlabour_Click" />
+                    
+                    <Grid Grid.Row="5" Grid.Column="1" Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Row="0" Grid.Column="0"  TabIndex="7" Height="35" Width="122" HorizontalAlignment="Left" VerticalContentAlignment="Center" Name="txtlabouramount" Text="{Binding ElementName=dglabour,Path=SelectedItem.amount, UpdateSourceTrigger=Explicit}" >
+                            <TextBox.Style>
+                                <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Amount" Foreground="Gray" Padding="10"/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                        <Button Grid.Row="0" Grid.Column="1" TabIndex="8" Height="35" Width="61" Content="Add" HorizontalAlignment="Left" Cursor="Hand" Name="btnadd" Click="btnadd_Click" />
+                        <Button Grid.Row="0" Grid.Column="1" TabIndex="9" Height="35" Width="61" Content="Delete" HorizontalAlignment="Right" Cursor="Hand" Name="btndelete" Click="btndelete_Click" />
+                    </Grid>
+
+                    <DataGrid Name="dglabour" Grid.Row="6" Grid.ColumnSpan="2" Height="90" Width="500" Margin="0,0,0,10" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="True" AutoGeneratingColumn="dglabour_AutoGeneratingColumn" VerticalScrollBarVisibility="Visible">
+                    </DataGrid>
+
+                    <Button Grid.Row="7" Grid.ColumnSpan="2" TabIndex="10" Height="35" Width="500" Margin="0,0,0,10" Content="GET TOTAL" Cursor="Hand" Name="btngettotal" Click="Btngettotal_Click"/>
+                    
+                    <Grid Grid.Row="8" Grid.ColumnSpan="2" Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Name="txttotal" Grid.Row="0" Grid.Column="0" Height="35" Width="160" VerticalContentAlignment="Center" Margin="0,0,5,0" IsReadOnly="True" Background="#E8E8E8">
+                            <TextBox.Style>
+                                <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Total" Foreground="Gray" Padding="10"/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                        <TextBox Name="txtdiscount" Grid.Row="0" TabIndex="10" Grid.Column="1" Height="35" Width="160" VerticalContentAlignment="Center" Margin="2.5,0,2.5,0" PreviewTextInput="Txtdiscount_PreviewTextInput" KeyUp="Txtdiscount_KeyUp">
+                            <TextBox.Style>
+                                <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Discount" Foreground="Gray" Padding="10"/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                        <TextBox Name="txtgrandtotal" Grid.Row="0" Grid.Column="2" Height="35" Width="160" VerticalContentAlignment="Center" Margin="5,0,0,0" IsReadOnly="True" Background="#E8E8E8">
+                            <TextBox.Style>
+                                <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Grand Total" Foreground="Gray" Padding="10"/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="White"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </Grid>
+
+                    <TextBox Grid.Row="9" Grid.ColumnSpan="2" Text="-" TabIndex="11" CharacterCasing="Upper" Height="35" Width="500" Name="txtnotes" Margin="0,0,0,10" VerticalContentAlignment="Center" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <TextBox.Style>
+                            <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Notes" Foreground="Gray" Padding="10"/>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <Rectangle Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Fill="LightGray" Height="1" Margin="0,0,0,10"/>
+
+                    <Button Grid.Row="11" Grid.Column="0" TabIndex="12" Height="35" Width="245" Content="Submit"  HorizontalAlignment="Left" Cursor="Hand" Name="btnsubmint" Click="Btnsubmint_Click"/>
+                    <Button Grid.Row="11" Grid.Column="1" TabIndex="13" Height="35" Width="245" Content="Reset" HorizontalAlignment="Right" Cursor="Hand" Name="btnreset" Click="Btnreset_Click"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </GroupBox>
+</Page>

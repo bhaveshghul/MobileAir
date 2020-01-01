@@ -1,0 +1,14 @@
+﻿<Page x:Class="mobileAir.pages.BillReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:mobileAir.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BillReport">
+
+    <Grid>
+        <Button Content="Bill Report" Name="btnview" Height="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Btnview_Click" Cursor="Hand"/>
+    </Grid>
+</Page>

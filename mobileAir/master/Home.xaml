@@ -1,0 +1,143 @@
+﻿<Window x:Class="mobileAir.master.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mobileAir.master"
+        mc:Ignorable="d"
+        Title="Home" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="btv" />
+
+        <!-- style a top level menu item -->
+        <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
+            <StackPanel TextBlock.FontSize="15px" Height="40">
+                <!-- label, icons, etc. -->
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"  Value="True">
+                                <Setter Property="Background" Value="#106EBE" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+        </ControlTemplate>
+
+        <!-- style a non-top level menu item -->
+        <ControlTemplate x:Key="VsMenuSub" TargetType="MenuItem">
+            <DockPanel TextBlock.FontSize="15px" x:Name="panel">
+                <!-- label, icons, etc. -->
+                <Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="20" Margin="5,0" />
+                <Label Content="{TemplateBinding Header}" Foreground="Black" Margin="0,5,5,5" />
+
+                <!-- draw the right arrow only if this menu item has sub items -->
+                <Image Source="../image/icon_right.png" Visibility="{Binding HasItems, Converter={StaticResource btv}, RelativeSource={RelativeSource TemplatedParent}}" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </DockPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" TargetName="panel" Value="#EFF6FC" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- style the separator -->
+        <ControlTemplate x:Key="VsMenuSep" TargetType="Separator">
+            <Border Height="1" Background="#E0E0E0" />
+        </ControlTemplate>
+
+        <!-- style the VSOnline -->
+        <ControlTemplate x:Key="VsOnline" TargetType="MenuItem">
+            <StackPanel TextBlock.FontSize="15px" Height="40" Orientation="Horizontal" Background="#005A9E">
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
+                <Image Source="../image/icon_down.png" Height="20" Margin="0,0,5,0" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </StackPanel>
+        </ControlTemplate>
+
+        <!-- some base stuff -->
+        <Style TargetType="Menu">
+            <Setter Property="Background" Value="#0078D7" />
+            <Setter Property="Height" Value="40px" />
+        </Style>
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="NavigationCommands.GoToPage" Executed="GoToPageExecuteHandler" CanExecute="GoToPageCanExecuteHandler" />
+    </Window.CommandBindings>
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!--<Border  BorderBrush="Gray" Background="#FDB44B" BorderThickness="0.5">
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="320"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Grid.Row="0"  Source="../image/logodark.png" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"></Image>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Mobile Air" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" FontWeight="SemiBold" Margin="265,0,0,0"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </Border>-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Menu IsMainMenu="True" Grid.Row="0" Grid.Column="0">
+                <MenuItem Header="_MobileAir" Template="{StaticResource VsOnline}" >
+                    <MenuItem Header="_User" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/ManageRegister.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_Logout" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Click="logout_Click" />
+                </MenuItem>
+                <MenuItem Header="_NewBill" Template="{StaticResource VsMenuTop}" Command="NavigationCommands.GoToPage" CommandParameter="../pages/NewService.xaml" CommandTarget="{Binding ElementName=frmContent}">
+                </MenuItem>
+                <MenuItem Header="_ManageBill" Template="{StaticResource VsMenuTop}" Command="NavigationCommands.GoToPage" CommandParameter="../pages/ManageService.xaml" CommandTarget="{Binding ElementName=frmContent}">
+                </MenuItem>
+                <MenuItem Header="_Reports" Template="{StaticResource VsMenuTop}">
+                    <MenuItem Header="_CustomerReport" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/CustomerReport.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_VehicleReport" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/VehicleReport.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_YearlyReport" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/YearlyReport.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_BillReport" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/BillReport.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_PaymentReport" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/PaymentReport.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                </MenuItem>
+                <MenuItem Header="_Master" Template="{StaticResource VsMenuTop}">
+                    <MenuItem Header="_Customer" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/ManageCustomer.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_Model" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/ManageModel.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_Technician" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/ManageTechnician.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_Payment" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/ManagePayment.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                    <MenuItem Header="_Labour" Template="{StaticResource VsMenuSub}" Icon="../image/icon_backlogs.png" Command="NavigationCommands.GoToPage" CommandParameter="../pages/ManageLabour.xaml" CommandTarget="{Binding ElementName=frmContent}" />
+                </MenuItem>
+            </Menu>
+            <Frame Grid.Row="1" Grid.Column="0" NavigationUIVisibility="Automatic" Name="frmContent" Source="../pages/Default.xaml" Height="665" VerticalContentAlignment="Bottom" />
+        </Grid>
+    </StackPanel>
+</Window>

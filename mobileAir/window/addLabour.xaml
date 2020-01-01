@@ -1,0 +1,52 @@
+﻿<Window x:Class="mobileAir.window.addLabour"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mobileAir.window"
+        mc:Ignorable="d"
+        Title="addLabour" Height="170" Width="370" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="#1e90ff">
+    <Border BorderThickness="0.5" BorderBrush="Gray" Height="150" Width="350" Background="White">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="10" Color="#cccccc" Opacity="100" ShadowDepth="0" Direction="0" />
+        </Border.Effect>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <TextBox Height="35" Width="300" Name="txtname" Margin="0,0,0,10" VerticalContentAlignment="Center" CharacterCasing="Upper">
+                <TextBox.Style>
+                    <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Labour" Foreground="Gray" Padding="10"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background"  Value="{StaticResource CueBannerBrush}"/>
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <Grid Width="300">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="1" Grid.Column="0" Height="35" Width="145" Content="Add Labour"  HorizontalAlignment="Left" Cursor="Hand" Name="btnsubmint" Click="btnsubmint_Click"/>
+                <Button Grid.Row="1" Grid.Column="1" Height="35" Width="145" Content="Close" HorizontalAlignment="Right" Cursor="Hand" Name="btnclose" Click="btnclose_Click"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>
